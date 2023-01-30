@@ -22,9 +22,13 @@ class MinimalSubscriber(Node):
 
     def __init__(self):
         super().__init__('minimal_subscriber')
-        # ④
-        
-        self.subscription  # prevent unused variable warning
+
+        ##### ⑤ #####
+
+        ##############
+
+        # 未使用変数による警告を防ぐため記述
+        self.subscription 
 
     def listener_callback(self, msg):
         self.get_logger().info('I heard: "%s"' % msg.data)
@@ -34,14 +38,15 @@ def main(args=None):
     rclpy.init(args=args)
 
     minimal_subscriber = MinimalSubscriber()
-    # ⑤
+
+    ##### ⑥ #####
+
+    ##############
+
+    ##### ⑦ #####
 
 
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
-    minimal_subscriber.destroy_node()
-    rclpy.shutdown()
+    ##############
 
 
 if __name__ == '__main__':
