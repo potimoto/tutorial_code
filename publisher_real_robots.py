@@ -10,26 +10,29 @@ class MinimalPublisher(Node):
         super().__init__('minimal_publisher')
 
         ##### ① #####
-
+        
         ##############
 
-        timer_period = 0.5  # seconds
+        timer_period = 1  # 秒
         self.timer = self.create_timer(timer_period, self.timer_callback)
+        self.i = 0
+
 
     def timer_callback(self):
         twist = Twist()
 
-        twist.linear.x = 0.1 #ロボットの並進速度．正の値であれば前進（単位m/s）
-        twist.linear.y = 0.0
-        twist.linear.z = 0.0
+        if self.i <= 10: 
+            twist.linear.x = 0.05 # ロボットの並進速度．正の値であれば前進（単位m/s）
+            twist.angular.z = 0.3 # ロボットの角速度．正の値であれば反時計回り（単位rad/s）
+        else:
+            twist.linear.x = 0.0
+            twist.angular.z = 0.0
 
-        twist.angular.x = 0.0
-        twist.angular.y = 0.0
-        twist.angular.z = 0.1 #ロボットの角速度．正の値であれば反時計回り（単位m/s）
-          
         ##### ② #####
-          
+        
         ##############
+
+        self.i += 1
 
 
 def main(args=None):
@@ -38,11 +41,11 @@ def main(args=None):
     minimal_publisher = MinimalPublisher()
 
     ##### ③ #####
-      
+
     ##############
 
     ##### ④ #####
-      
+
 
     ##############
 
