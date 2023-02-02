@@ -15,7 +15,7 @@ class MinimalPublisher(Node):
 
         timer_period = 1  # 秒
         self.timer = self.create_timer(timer_period, self.timer_callback)
-        self.i = 0
+        self.i = 0 # 何回publishしたかを数えるカウンタ
 
 
     def timer_callback(self):
